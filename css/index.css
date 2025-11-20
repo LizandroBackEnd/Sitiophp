@@ -1,0 +1,124 @@
+:root{
+    --gap: 0.75rem;
+    --radius: 12px;
+    --card-padding: 1.5rem;
+    --max-content-width: 100ch;
+    --accent: Highlight;
+    --accent-text: HighlightText;
+    --bg: Canvas;
+    --text: CanvasText;
+    --muted: color-mix(in srgb, CanvasText 60%, Canvas 40%);
+    color-scheme: light dark;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+}
+
+html,body{
+    height:100%;
+}
+
+body{
+    margin:0;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    background: var(--bg);
+    color: var(--text);
+    line-height:1.45;
+    -webkit-text-size-adjust:100%;
+}
+
+main{
+    max-width: var(--max-content-width);
+    margin-inline:auto;
+    padding: 1.25rem;
+}
+
+h1,h2,h3{ font-weight:600; margin:0 0 0.5rem 0; }
+
+a{ color: var(--accent); }
+a:hover, a:focus{ text-decoration: underline; }
+
+footer{ text-align:center; margin-top:2rem; padding:1rem 0; border-top:1px solid color-mix(in srgb, var(--text) 10%, transparent); color: color-mix(in srgb, var(--text) 60%, var(--bg) 40%); }
+
+header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:var(--gap);
+    padding:0.6rem 1rem;
+    border-bottom:1px solid color-mix(in srgb, var(--text) 8%, transparent);
+    background: color-mix(in srgb, var(--bg) 70%, transparent);
+}
+
+#hamburguesa{
+    background: transparent;
+    border:1px solid transparent;
+    padding:0.4rem 0.6rem;
+    border-radius:8px;
+    font-size:1.15rem;
+    cursor:pointer;
+    color:var(--text);
+}
+#hamburguesa:focus{ outline:2px solid color-mix(in srgb, var(--accent) 50%, transparent); outline-offset:2px; }
+
+#navegacionAncha ul{ display:inline-flex; gap:var(--gap); list-style:none; margin:0; padding:0; }
+#navegacionAncha a{ padding:0.45rem 0.6rem; border-radius:8px; text-decoration:none; color:var(--text); }
+#navegacionAncha a:hover, #navegacionAncha a:focus{ background: color-mix(in srgb, var(--accent) 6%, transparent); }
+
+#navegacionDelSitio{
+    background: var(--bg);
+    border:1px solid color-mix(in srgb, var(--text) 8%, transparent);
+    padding:0.8rem;
+    border-radius:10px;
+    box-shadow:0 8px 20px color-mix(in srgb, var(--text) 8%, transparent);
+}
+
+@media (max-width:599px){
+    #navegacionAncha{ display:none; }
+}
+@media (min-width:600px){
+    #navegacionDelSitio{ display:none; }
+    #hamburguesa{ display:none; }
+}
+
+@view-transition{ navigation:auto; }
+@keyframes aparece{ from{ opacity:0 } }
+@keyframes desvanece{ to{ opacity:0 } }
+::view-transition-group(root){ animation-duration:0.45s }
+::view-transition-old(root){ animation-name:desvanece }
+::view-transition-new(root){ animation-name:aparece; animation-delay:0.12s }
+
+.login-wrap{ display:grid; place-items:center; padding:2.2rem 1rem; }
+.login-card{ width: min(520px, 94vw); background: var(--bg); color: var(--text); border-radius: var(--radius); padding: var(--card-padding); border:1px solid color-mix(in srgb, var(--text) 8%, transparent); box-shadow: 0 10px 30px color-mix(in srgb, var(--text) 8%, transparent); text-align:left; }
+.login-card h1{ font-size:1.5rem; margin-bottom:0.25rem; }
+.login-card p.lead{ margin:0 0 1rem 0; color: var(--text); opacity:0.9 }
+.login-card form{ display:grid; gap:0.85rem; margin-top:0.8rem }
+
+.login-card label{ display:block; font-size:0.9rem; margin-bottom:0.25rem }
+.login-card input[type="text"], .login-card input[type="password"], .login-card input[type="email"]{
+    width:100%; padding:0.85rem 1rem; border-radius:8px; border:1px solid color-mix(in srgb, var(--text) 12%, transparent); background: Field; color: FieldText; box-sizing:border-box; transition: box-shadow .12s ease, border-color .12s ease;
+}
+.login-card input:focus{ box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 14%, transparent); outline: none; border-color: color-mix(in srgb, var(--accent) 44%, transparent); }
+
+.btn{ display:inline-block; padding:0.7rem 1rem; border-radius:8px; background: var(--accent); color: var(--accent-text); border:none; cursor:pointer; text-align:center }
+.btn:hover{ filter:brightness(.96); transform: translateY(-1px); }
+.btn:active{ transform: translateY(0); }
+
+.login-card .register-link{ margin-top:0.6rem; color: var(--text); text-align:center }
+.login-card .register-link a{ font-weight:700; color:var(--accent); text-decoration:none }
+
+.muted{ color: color-mix(in srgb, var(--text) 60%, var(--bg) 40%); font-size:0.95rem }
+
+button:focus, a:focus{ outline: 2px solid color-mix(in srgb, var(--accent) 40%, transparent); outline-offset:2px }
+
+nav ul{ margin:0; padding:0; list-style:none }
+
+footer p{ margin:0; font-size:0.9rem }
+
+@media (prefers-color-scheme: dark){
+    :root{ --card-padding:1.5rem }
+    .login-card{ backdrop-filter: blur(6px); }
+}
+
+@media (prefers-color-scheme: light){
+    :root{ --card-padding:1.25rem }
+}
