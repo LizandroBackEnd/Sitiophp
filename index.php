@@ -1,8 +1,8 @@
 <?php
 session_start();
-if(isset($_SESSION["x"])) {
+ if(isset($_SESSION["x"])) {
  header("location: info.php");
- return; // Importante detener la ejecución
+ return;
 }
 ?><!DOCTYPE html>
 <html lang="es">
